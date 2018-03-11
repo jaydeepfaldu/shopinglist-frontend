@@ -1,0 +1,99 @@
+ 
+	<div style="background-color: green; line-height: 30px; color:white;" >Create List </div>
+	<table class="addfrm">
+	
+	<tr>
+		<td align="right">
+		Item Name :
+		</td>
+		<td align="left" >		
+		<input #itemname >
+		</td>
+	</tr>
+	<tr>
+		<td align="right">
+		Store Name :
+		</td>
+		<td align="left">
+		<select #storename >
+			<option *ngFor="let sname of storenamelist">
+				{{sname.name}}
+			</option>
+		</select>
+		
+		</td>
+	</tr>
+	 <tr> 
+		<td align="right">
+		Qty :
+		</td>
+		<td align="left"> 
+		<input #itemqty >
+		</td>
+	</tr>
+	<tr> 
+		<td align="right">
+		Expected Price :
+		</td>
+		<td align="left"> 
+		<input #itemeprice >
+		</td>
+	</tr>
+
+		<tr>
+						<td></td>
+						<td><button (click)="onClickAdd(itemname.value, storename.value, itemqty.value, itemeprice.value)"> Add Item </button>
+							<button > Clear </button></td>
+					</tr>
+
+    
+	</table>
+	   
+	   
+	   <table>
+		<thead  >
+			<td>
+				Item ID
+			</td>
+			<td>
+				Item Name
+			</td>		
+			<td>
+				Store Name
+			</td>			
+			<td>
+				Item Qty.
+			</td>		
+			<td>
+				Expected Price.
+			</td>
+		</thead>
+	
+	 
+	<tr *ngFor="let itm of itemlist">
+		<td>	
+		{{itm.id}}
+		</td>
+		<td>
+		{{itm.name}}
+		</td>
+		<td>
+		 {{itm.store}}
+		</td>
+		<td>
+		{{itm.qty}}
+		</td>
+		<td>
+		{{itm.eprice}}
+		</td>
+		
+	</tr>
+	
+	</table>
+	   
+	   
+
+   <ul>
+    
+   </ul>
+

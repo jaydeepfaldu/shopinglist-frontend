@@ -1,0 +1,33 @@
+table {
+	margin: 0 auto; /* or margin: 0 auto 0 auto */
+}
+
+button{
+	width: 100px;
+	height: 40px;
+	background-color: #005b5b;
+	color: white;
+	border-style: solid;
+	border-color: white;
+}
+
+
+
+button:hover {
+	color: yellow;
+	border-color: yellow;
+}
+
+tr {
+	background-color: #d7dbe8;
+}
+
+thead {
+	background-color: #005151;
+	color: white;
+	font-size: 18px;
+}
+
+td {
+	padding: 10px;
+}
