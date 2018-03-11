@@ -1,3 +1,47 @@
-<p>
-  inbucket works!
-</p>
+<div style="background-color: green; line-height: 30px; color:white;" > Add item in bucket </div>
+
+<table style="margin: auto">
+		<thead  >
+			<td>
+				Item ID
+			</td>
+			<td>
+				Item Name
+			</td>		
+			<td>
+				Store Name
+			</td>			
+			<td>
+				Item Qty.
+			</td>		
+			<td>
+				Expected Price.
+			</td>
+			<td>
+				In Bucket ?
+			</td>
+		</thead>
+	
+	 
+	<tr *ngFor="let itm of itemlistinbucket">
+		<td>	
+		{{itm.id}}
+		</td>
+		<td>
+		{{itm.name}}
+		</td>
+		<td>
+		 {{itm.store}}
+		</td>
+		<td>
+		{{itm.qty}}
+		</td>
+		<td>
+		{{itm.eprice}}
+		</td>
+		<td>
+			<input type="checkbox" checked="{{itm.inbucket==1 ? 'checked' : ''}}" (click)="updateInBucket(itm)"> 
+		</td>
+	</tr>
+	
+	</table>

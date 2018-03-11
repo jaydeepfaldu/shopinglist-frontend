@@ -1,0 +1,22 @@
+input[type='checkbox']{
+	width: 25px !important;
+	height: 25px !important;
+	margin: 3px;	
+	
+	font-size: 2em;
+	
+	}
+	
+tr {
+	background-color: #d7dbe8;
+}
+
+thead {
+	background-color: #005151;
+	color: white;
+	font-size: 18px;
+}
+
+td {
+	padding: 10px;
+}

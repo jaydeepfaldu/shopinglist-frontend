@@ -35,8 +35,11 @@ export class CreatelistComponent implements OnInit {
 
   onClickAdd(item,store,qty, eprice) 
   {
-    this.itemservice.addItem(item,store,qty, eprice);
-    this.getItems();
+    
+    this.itemservice.addItem(item,store,qty, eprice).subscribe(itemlist => {
+      this.itemlist = itemlist;
+    });
+    
     
   }
 

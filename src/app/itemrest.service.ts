@@ -34,25 +34,31 @@ export class ItemrestService {
 };
   
   constructor(private http: HttpClient) { }
+
+
+  getItems (): Observable<Items[]> {
+    return this.http.get<Items[]>(this.getItemsURL, this.httpOptions);
+      
+  }
   
-  addItem(name, store, qty, eprice) {
-    
-    const obj = {
+ addItem (name, store, qty, eprice): Observable<Items[]> {
+   const obj = {
       name: name,
       store: store,
       qty:qty,
       eprice:eprice
     };
-    
-    this.http.post('http://localhost:8080/user/item', obj, this.httpOptions)
-        .subscribe(res => console.log('Done'));
-  }
+   return this.http.post<Items[]>('http://localhost:8080/user/item', obj, this.httpOptions);   
+}
+
   
-    
-
-  getItems (): Observable<Items[]> {
-    return this.http.get<Items[]>(this.getItemsURL, this.httpOptions).pipe();
-      
-  }
-
+  updateItemBucket (item : Items): Observable<Items[]> {
+  
+   const obj = {
+      inbucket : item.inbucket == 1 ? 0 : 1 
+    };
+   return this.http.put<Items[]>('http://localhost:8080/user/itembucket/'+item.id, obj, this.httpOptions);   
+}
+  
+  
 }
