@@ -10,12 +10,14 @@ import { AppRoutingModule } from './/app-routing.module';
 import { InbucketComponent } from './inbucket/inbucket.component';
 
 import { ItemrestService } from './itemrest.service';
+import { PricecompareComponent } from './pricecompare/pricecompare.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CreatelistComponent,
-    InbucketComponent
+    InbucketComponent,
+    PricecompareComponent
   ],
   imports: [
     BrowserModule,

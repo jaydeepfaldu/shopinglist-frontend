@@ -7,6 +7,15 @@ input[type='checkbox']{
 	
 	}
 	
+	.odd{
+	background-color: #95bfe1;
+}
+
+
+.even{
+	background-color: #c9deef;
+}
+	
 tr {
 	background-color: #d7dbe8;
 }

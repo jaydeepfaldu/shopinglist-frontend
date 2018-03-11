@@ -1,0 +1,51 @@
+<div style="background-color: green; line-height: 30px; color:white;" > Compare price with your expected </div>
+
+<table style="margin: auto">
+		<thead  >
+			<td>
+				Item ID
+			</td>
+			<td>
+				Item Name
+			</td>		
+			<td>
+				Store Name
+			</td>			
+			<td>
+				Item Qty.
+			</td>		
+			<td>
+				Expected Price.
+			</td>
+			<td colspan="2">
+				Real Price
+			</td>
+		</thead>
+	
+	 
+	<tr *ngFor="let itm of itemlistprice ; let isOdd=odd;
+             let isEven=even " [class.odd]="isOdd" [class.even]="isEven" >
+		<td>	
+		{{itm.id}}
+		</td>
+		<td>
+		{{itm.name}}
+		</td>
+		<td>
+		 {{itm.store}}
+		</td>
+		<td>
+		{{itm.qty}}
+		</td>
+		<td>
+		{{itm.eprice}}
+		</td>
+		<td>
+			<input #sprice value="{{itm.sprice}}">
+		</td>
+		<td>
+			<button  (click)="updateSprice(itm.id,sprice.value);"> Update </button> 
+		</td>
+	</tr>
+	
+	</table>

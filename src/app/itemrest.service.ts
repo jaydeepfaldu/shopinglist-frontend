@@ -14,8 +14,7 @@ import {Items} from './items';
 export class ItemrestService {
 
   private getItemsURL = 'http://localhost:8080/user/items';
-  
-  
+  private getItemsInBucketURL = 'http://localhost:8080/user/itemsbybucket';
   
   
    httpOptions = {
@@ -41,6 +40,12 @@ export class ItemrestService {
       
   }
   
+  
+   getItemsInBucket (): Observable<Items[]> {
+    return this.http.get<Items[]>(this.getItemsInBucketURL, this.httpOptions);
+      
+  }
+  
  addItem (name, store, qty, eprice): Observable<Items[]> {
    const obj = {
       name: name,
@@ -60,5 +65,13 @@ export class ItemrestService {
    return this.http.put<Items[]>('http://localhost:8080/user/itembucket/'+item.id, obj, this.httpOptions);   
 }
   
+  
+  updateItemPrice(id, sprice): Observable<Items[]> {
+  
+   const obj = {
+      sprice : sprice
+    };
+   return this.http.put<Items[]>('http://localhost:8080/user/itemsprice/'+id, obj, this.httpOptions);   
+}
   
 }

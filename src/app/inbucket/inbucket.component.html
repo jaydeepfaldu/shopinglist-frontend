@@ -23,7 +23,7 @@
 		</thead>
 	
 	 
-	<tr *ngFor="let itm of itemlistinbucket">
+	<tr *ngFor="let itm of itemlistinbucket; let isOdd = odd; let isEven=even" [class.odd]="isOdd" [class.even]="isEven">
 		<td>	
 		{{itm.id}}
 		</td>

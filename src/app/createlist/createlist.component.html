@@ -42,8 +42,8 @@
 
 		<tr>
 						<td></td>
-						<td><button (click)="onClickAdd(itemname.value, storename.value, itemqty.value, itemeprice.value)"> Add Item </button>
-							<button > Clear </button></td>
+						<td><button (click)="onClickAdd(itemname.value, storename.value, itemqty.value, itemeprice.value); itemname.value=''; storename.value=''; itemqty.value=''; itemeprice.value='';"> Add Item </button>
+							<button (click)="itemname.value=''; storename.value=''; itemqty.value=''; itemeprice.value='';"> Clear </button></td>
 					</tr>
 
     
@@ -70,7 +70,7 @@
 		</thead>
 	
 	 
-	<tr *ngFor="let itm of itemlist">
+	<tr *ngFor="let itm of itemlist let isOdd=odd; let isEven=even " [class.odd]="isOdd" [class.even]="isEven" >
 		<td>	
 		{{itm.id}}
 		</td>

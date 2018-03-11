@@ -31,3 +31,11 @@ thead {
 td {
 	padding: 10px;
 }
+.odd{
+	background-color: #95bfe1;
+}
+
+
+.even{
+	background-color: #c9deef;
+}
