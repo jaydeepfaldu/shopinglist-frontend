@@ -13,10 +13,32 @@ button{
 
 
 
+
+.error-msg {
+  color: #a94442;
+}
+.fix-error-icon {
+  top: 27px;
+}
+.addfrm td {
+	padding: 5px;
+}
+
+.control-label.required:after { 
+  color: #d00;
+  content: "*";
+  position: absolute;
+  margin-left: 5px;
+  top:7px;
+}
+
+
 button:hover {
 	color: yellow;
 	border-color: yellow;
 }
+
+
 
 tr {
 	background-color: #d7dbe8;

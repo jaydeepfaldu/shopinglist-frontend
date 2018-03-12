@@ -1,99 +1,118 @@
- 
-	<div style="background-color: green; line-height: 30px; color:white;" >Create List </div>
-	<table class="addfrm">
-	
-	<tr>
-		<td align="right">
-		Item Name :
-		</td>
-		<td align="left" >		
-		<input #itemname >
-		</td>
-	</tr>
-	<tr>
-		<td align="right">
-		Store Name :
-		</td>
-		<td align="left">
-		<select #storename >
-			<option *ngFor="let sname of storenamelist">
-				{{sname.name}}
-			</option>
-		</select>
-		
-		</td>
-	</tr>
-	 <tr> 
-		<td align="right">
-		Qty :
-		</td>
-		<td align="left"> 
-		<input #itemqty >
-		</td>
-	</tr>
-	<tr> 
-		<td align="right">
-		Expected Price :
-		</td>
-		<td align="left"> 
-		<input #itemeprice >
-		</td>
+
+<div style="background-color: green; line-height: 30px; color: white;">Create
+	List</div>
+
+
+
+<form [formGroup]="listforme" (ngSubmit)="onClickAdd()">
+		<table style="width: 400px">
+			<tr>
+				<td align="right">
+					Name :
+				</td>
+				<td align="left">
+					<input type="text" class="form-control" formControlName="name" width="30px">
+					<span class="form-control-feedback" 
+       					  *ngIf="name.invalid && name.dirty || name.touched && name.errors"> 
+    					 Id is invalid
+  					</span>
+  					<span class="form-control-feedback" 
+       				*ngIf="name.untouched"> 
+    				*
+  					</span>
+				</td>				
+			</tr>  
+			<tr>
+				<td align="right">
+					Store :
+				</td>
+				<td align="left">
+					<select class="form-control" formControlName="store">
+					<option value="">Select store name</option>
+					<option *ngFor="let sname of storenamelist">{{sname.name}}
+					</option>
+					</select>
+					<span class="form-control-feedback" 
+       					  *ngIf="store.invalid && store.dirty || store.touched && store.errors"> 
+    					 Storename is invalid
+  					</span>
+  					<span class="form-control-feedback" 
+       				*ngIf="store.untouched"> 
+    				*
+  					</span>
+				</td>				
+			</tr>
+			<tr>
+				<td align="right">
+					Qty :
+				</td>
+				<td align="left">
+					<input type="number" class="form-control" formControlName="qty" width="30px">
+					<span class="form-control-feedback" 
+       					  *ngIf="qty.invalid && qty.dirty || qty.touched && qty.errors"> 
+    					 Qty is invalid
+  					</span>
+  					<span class="form-control-feedback" 
+       				*ngIf="qty.untouched"> 
+    				*
+  					</span>
+				</td>				
+			</tr>  
+			<tr>
+				<td align="right">
+					Expected Price :
+				</td>
+				<td align="left">
+					<input type="number" class="form-control" formControlName="eprice" width="30px">
+					<span class="form-control-feedback" 
+       					  *ngIf="eprice.invalid && eprice.dirty || eprice.touched && eprice.errors"> 
+    					 Expected Price is invalid
+  					</span>
+  					<span class="form-control-feedback" 
+       				*ngIf="eprice.untouched"> 
+    				*
+  					</span>
+				</td>				
+			</tr>
+			<tr>
+				<td>
+				</td>
+				<td>
+					<button type="submit" >Add Item</button>
+					<button (click)="reset()" >Clear</button>
+				</td>
+			</tr>
+	   		
+	   </table>
+</form>
+
+
+
+<table>
+	<thead>
+		<td>Item ID</td>
+		<td>Item Name</td>
+		<td>Store Name</td>
+		<td>Item Qty.</td>
+		<td>Expected Price.</td>
+	</thead>
+
+
+	<tr *ngFor="let itm of itemlist let isOdd=odd; let isEven=even "
+		[class.odd]="isOdd" [class.even]="isEven">
+		<td>{{itm.id}}</td>
+		<td>{{itm.name}}</td>
+		<td>{{itm.store}}</td>
+		<td>{{itm.qty}}</td>
+		<td>{{itm.eprice}}</td>
+
 	</tr>
 
-		<tr>
-						<td></td>
-						<td><button (click)="onClickAdd(itemname.value, storename.value, itemqty.value, itemeprice.value); itemname.value=''; storename.value=''; itemqty.value=''; itemeprice.value='';"> Add Item </button>
-							<button (click)="itemname.value=''; storename.value=''; itemqty.value=''; itemeprice.value='';"> Clear </button></td>
-					</tr>
+</table>
 
-    
-	</table>
-	   
-	   
-	   <table>
-		<thead  >
-			<td>
-				Item ID
-			</td>
-			<td>
-				Item Name
-			</td>		
-			<td>
-				Store Name
-			</td>			
-			<td>
-				Item Qty.
-			</td>		
-			<td>
-				Expected Price.
-			</td>
-		</thead>
-	
-	 
-	<tr *ngFor="let itm of itemlist let isOdd=odd; let isEven=even " [class.odd]="isOdd" [class.even]="isEven" >
-		<td>	
-		{{itm.id}}
-		</td>
-		<td>
-		{{itm.name}}
-		</td>
-		<td>
-		 {{itm.store}}
-		</td>
-		<td>
-		{{itm.qty}}
-		</td>
-		<td>
-		{{itm.eprice}}
-		</td>
-		
-	</tr>
-	
-	</table>
-	   
-	   
 
-   <ul>
-    
-   </ul>
+
+<ul>
+
+</ul>
 
