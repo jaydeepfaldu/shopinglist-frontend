@@ -12,13 +12,15 @@ import { InbucketComponent } from './inbucket/inbucket.component';
 import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ItemrestService } from './itemrest.service';
 import { PricecompareComponent } from './pricecompare/pricecompare.component';
+import { SendmailComponent } from './sendmail/sendmail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CreatelistComponent,
     InbucketComponent,
-    PricecompareComponent
+    PricecompareComponent,
+    SendmailComponent
   ],
   imports: [
     BrowserModule,

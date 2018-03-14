@@ -7,6 +7,7 @@ import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import {Items} from './items';
+import {MailResponse} from './mailresponse';
 
 
 
@@ -21,6 +22,24 @@ export class ItemrestService {
   headers: new HttpHeaders({
     
     'Content-Type':  'application/json',  
+    'X-PINGOTHER':'pingpong',
+    'Access-Control-Allow-Headers' : 'Origin, Accept, Authorization, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers',
+    'Access-Control-Allow-Methods':'GET, POST, DELETE, PUT, HEAD, OPTIONS',
+    'Access-Control-Allow-Origin':'*',
+    'Access-Control-Expose-Headers':'xsrf-token',
+    'Access-Control-Max-Age':'1800',
+    'Cache-Control':'max-age=0'
+    
+  })
+};
+  
+  
+  
+   httpOptions_email = {
+  headers: new HttpHeaders({
+    
+    'Content-Type':  'application/json',  
+    'responseType':'text',
     'X-PINGOTHER':'pingpong',
     'Access-Control-Allow-Headers' : 'Origin, Accept, Authorization, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers',
     'Access-Control-Allow-Methods':'GET, POST, DELETE, PUT, HEAD, OPTIONS',
@@ -73,5 +92,18 @@ export class ItemrestService {
     };
    return this.http.put<Items[]>('http://localhost:8080/user/itemsprice/'+id, obj, this.httpOptions);   
 }
+  
+  
+  sendMail(name, subject, message):Observable<MailResponse>{
+     const obj = {
+      receiver: name,
+      subject: subject,
+      message: message      
+    };
+    
+   return this.http.post<MailResponse>('http://localhost:8080/user/sendmail', obj, this.httpOptions_email);   
+}
+  
+  
   
 }
