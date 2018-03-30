@@ -1,16 +1,24 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
+<div class="jumbotron">
+				<div class="container">
+					  <h1>
+						{{title}}
+					 </h1>	
+					 
+					 <div class="row btn-group">
+						 
+							<button type="button" (click)="createList()" class="btn  btn-outline-primary">Create List</button>					
+							<button type="button" (click)="inBucket()" class="btn  btn-outline-primary">In Bucket</button>					
+							<button type="button" (click)="priceCompare()" class="btn   btn-outline-primary">Compare Price</button>					
+							<button type="button" (click)="print()"  class="btn   btn-outline-primary">Print</button>					
+							<button type="button" (click)="authentication()"  class="btn  btn-outline-primary" >{{auth}}</button>					
+					</div>		  
+				</div>
+</div>
 
-<header> {{title}}</header>
 
-  		<ul>
-			<li><a routerLink="/createlist"> Create List </a></li>
-			<li><a routerLink="/inbucket"> In Bucket </a></li>
-			<li><a routerLink="/pricecompare"> Compare Price </a></li>
-			<li><a routerLink="/print"> Print </a></li>
-			<li style="float: right"><a> Clear </a></li>
-		</ul>	
+
 		<router-outlet></router-outlet>
 		
-</div>
+
 

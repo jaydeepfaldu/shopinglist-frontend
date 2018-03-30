@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { HttpClientModule } from '@angular/common/http';
-
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 
 import { AppComponent } from './app.component';
@@ -13,6 +13,7 @@ import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } 
 import { ItemrestService } from './itemrest.service';
 import { PricecompareComponent } from './pricecompare/pricecompare.component';
 import { SendmailComponent } from './sendmail/sendmail.component';
+import { AuthenicationComponent } from './authenication/authenication.component';
 
 @NgModule({
   declarations: [
@@ -20,13 +21,15 @@ import { SendmailComponent } from './sendmail/sendmail.component';
     CreatelistComponent,
     InbucketComponent,
     PricecompareComponent,
-    SendmailComponent
+    SendmailComponent,
+    AuthenicationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
      HttpClientModule,
-     ReactiveFormsModule
+     ReactiveFormsModule,
+     NgbModule.forRoot()
      
      
   ],

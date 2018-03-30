@@ -1,7 +1,17 @@
-<div style="background-color: green; line-height: 30px; color:white;" > Add item in bucket </div>
+<div class="container">
 
-<table style="margin: auto">
-		<thead  >
+
+<div class="input-group">
+		<select class="form-control" #searchitem>
+					<option value="null" disabled="true" [selected]="true">Select List Title For View</option>
+					<option *ngFor="let lst of itemlist"   value="{{lst.list_id}}">{{lst.list_title}}
+					</option>
+		</select><div class="input-group-btn" ><button type="button" class="btn btn-info" (click)="getItems(searchitem.value)">
+						<span class="fa fa-search"></span> Search
+					  </button></div>
+</div>
+<table class="table table-bordered table-striped table-hover ">
+		<thead  class="bg-primary">
 			<td>
 				Item ID
 			</td>
@@ -23,25 +33,28 @@
 		</thead>
 	
 	 
-	<tr *ngFor="let itm of itemlistinbucket; let isOdd = odd; let isEven=even" [class.odd]="isOdd" [class.even]="isEven">
+	<tr *ngFor="let itm of itemlistinbucket;">
 		<td>	
-		{{itm.id}}
+		{{itm.container_id}}
 		</td>
 		<td>
-		{{itm.name}}
+		{{itm.item_name}}
 		</td>
 		<td>
-		 {{itm.store}}
+		 {{itm.store_name}}
 		</td>
 		<td>
 		{{itm.qty}}
 		</td>
 		<td>
-		{{itm.eprice}}
+		{{itm.eprise}}
 		</td>
 		<td>
-			<input type="checkbox" checked="{{itm.inbucket==1 ? 'checked' : ''}}" (click)="updateInBucket(itm)"> 
+			<input type="checkbox"   checked="{{itm.inbucket==1 ? 'checked' : ''}}" (click)="updateInBucket(itm)"> 
+
 		</td>
 	</tr>
 	
 	</table>
+
+</div>

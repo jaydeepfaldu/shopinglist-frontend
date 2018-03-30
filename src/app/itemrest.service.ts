@@ -7,6 +7,8 @@ import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import {Items} from './items';
+import {ItemList} from './itemlist';
+import {User} from './user';
 import {MailResponse} from './mailresponse';
 
 
@@ -14,8 +16,8 @@ import {MailResponse} from './mailresponse';
 @Injectable()
 export class ItemrestService {
 
-  private getItemsURL = 'http://localhost:8080/user/items';
-  private getItemsInBucketURL = 'http://localhost:8080/user/itemsbybucket';
+  
+  
   
   
    httpOptions = {
@@ -53,45 +55,70 @@ export class ItemrestService {
   
   constructor(private http: HttpClient) { }
 
-
-  getItems (): Observable<Items[]> {
-    return this.http.get<Items[]>(this.getItemsURL, this.httpOptions);
-      
-  }
   
-  
-   getItemsInBucket (): Observable<Items[]> {
-    return this.http.get<Items[]>(this.getItemsInBucketURL, this.httpOptions);
-      
-  }
-  
- addItem (name, store, qty, eprice): Observable<Items[]> {
-   const obj = {
-      name: name,
-      store: store,
-      qty:qty,
-      eprice:eprice
+  onAddItem(lid, nm, stnm, qy, espr):Observable<Items[]> {
+    const obj ={
+      list_id: lid,
+      item_name: nm,
+      store_name: stnm,
+      qty: qy,
+      eprise: espr
     };
-   return this.http.post<Items[]>('http://localhost:8080/user/item', obj, this.httpOptions);   
-}
+    return this.http.post<Items[]>("/api/item/item", obj, this.httpOptions);      
+  }
+
+
+  getItemList (user_id): Observable<ItemList[]> {
+    return this.http.get<ItemList[]>("/api/itemlist/itemlists/"+user_id, this.httpOptions);
+      
+  }
+  
+  addTitleList(inam,uid): Observable<ItemList[]>
+  {
+    const obj ={
+      list_title: inam,
+      user_id: uid
+    };
+
+    return this.http.post<ItemList[]>('/api/itemlist/itemlist',  obj, this.httpOptions); 
+  }
+
+
+  getItems (list_id): Observable<Items[]> {
+    return this.http.get<Items[]>("/api/item/items/"+list_id, this.httpOptions);      
+  }
+
+  getItemsInBucket (list_id): Observable<Items[]> {
+    return this.http.get<Items[]>("/api/item/items/inbucket/"+list_id, this.httpOptions);      
+  }
+
+  login(unm, pass): Observable<User> {
+    const obj = {
+      username: unm,
+      password: pass
+     };
+    return this.http.post<User>('/api/user/login',  obj, this.httpOptions);   
+ }
 
   
   updateItemBucket (item : Items): Observable<Items[]> {
   
-   const obj = {
+  const obj = {
+      list_id : item.list_id,      
       inbucket : item.inbucket == 1 ? 0 : 1 
     };
-   return this.http.put<Items[]>('http://localhost:8080/user/itembucket/'+item.id, obj, this.httpOptions);   
+   return this.http.put<Items[]>('/api/item/item/inbucket/'+item.container_id, obj, this.httpOptions);   
 }
+
+updateSprise(lid, spr, cid) : Observable<Items[]> {
   
-  
-  updateItemPrice(id, sprice): Observable<Items[]> {
-  
-   const obj = {
-      sprice : sprice
+  const obj = {
+      list_id : lid,      
+      sprise : spr
     };
-   return this.http.put<Items[]>('http://localhost:8080/user/itemsprice/'+id, obj, this.httpOptions);   
+   return this.http.put<Items[]>('/api/item/item/sprise/'+cid, obj, this.httpOptions);   
 }
+  
   
   
   sendMail(name, subject, message):Observable<MailResponse>{
@@ -101,7 +128,7 @@ export class ItemrestService {
       message: message      
     };
     
-   return this.http.post<MailResponse>('http://localhost:8080/user/sendmail', obj, this.httpOptions_email);   
+   return this.http.post<MailResponse>('/api/user/sendmail', obj, this.httpOptions_email);   
 }
   
   

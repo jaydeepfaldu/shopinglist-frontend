@@ -1,0 +1,19 @@
+.bg-primary{
+    color: white;
+}
+
+.table-hover thead tr:hover th, .table-hover tbody tr:hover td {
+    background-color: rgb(211, 226, 243);
+}
+
+.form-control{
+    margin-bottom:15px;
+}
+
+  input[required], select[required] {
+    border-left: 5px solid #42A948; /* green */
+  }
+
+  input.ng-invalid.ng-touched, select.ng-invalid.ng-touched {
+    border-left: 5px solid #e63d3d; /* red */
+  }

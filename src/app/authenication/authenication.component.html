@@ -1,0 +1,13 @@
+ 
+<div class="container" >
+  <form id="loginForm" [formGroup]="loginForm" (ngSubmit)="onClickLogin()">  
+    <input type="text" required class="form-control" placeholder="Username" formControlName="username" > 
+    <input type="password"  required class="form-control" placeholder="Password" formControlName="password" > 
+
+    <button class="btn btn-primary" type="submit"  [disabled]="!loginForm.valid"> Login </button> 
+
+  </form>
+
+  {{validuser}}
+  
+</div>

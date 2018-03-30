@@ -1,7 +1,17 @@
-<div style="background-color: green; line-height: 30px; color:white;" > Compare price with your expected </div>
+<div class="container">
 
-<table style="margin: auto">
-		<thead  >
+<div class="input-group">
+		<select class="form-control" #searchitem>
+					<option value="null" disabled="true" [selected]="true">Select List Title For View</option>
+					<option *ngFor="let lst of itemlist"   value="{{lst.list_id}}">{{lst.list_title}}
+					</option>
+		</select><div class="input-group-btn" ><button type="button" class="btn btn-info" (click)="getItems(searchitem.value)">
+						<span class="fa fa-search"></span> Search
+					  </button></div>
+</div>
+
+<table class="table table-bordered table-striped table-hover">
+		<thead class="bg-primary">
 			<td>
 				Item ID
 			</td>
@@ -17,7 +27,7 @@
 			<td>
 				Expected Price.
 			</td>
-			<td colspan="2">
+			<td>
 				Real Price
 			</td>
 		</thead>
@@ -25,27 +35,33 @@
 	 
 	<tr *ngFor="let itm of itemlistprice ; let isOdd=odd;
              let isEven=even " [class.odd]="isOdd" [class.even]="isEven" >
-		<td>	
-		{{itm.id}}
-		</td>
-		<td>
-		{{itm.name}}
-		</td>
-		<td>
-		 {{itm.store}}
-		</td>
-		<td>
-		{{itm.qty}}
-		</td>
-		<td>
-		{{itm.eprice}}
-		</td>
-		<td>
-			<input #sprice value="{{itm.sprice}}">
-		</td>
-		<td>
-			<button  (click)="updateSprice(itm.id,sprice.value);"> Update </button> 
+			 <td>	
+				{{itm.container_id}}
+				</td>
+				<td>
+				{{itm.item_name}}
+				</td>
+				<td>
+				 {{itm.store_name}}
+				</td>
+				<td>
+				{{itm.qty}}
+				</td>
+				<td>
+				{{itm.eprise}}
+				</td>
+		<td >
+			<div class="form-group">
+				<div class=" input-group">
+			<input type="number" class="form-control"  #sprise id="{{itm.item_name}}"  value="{{itm.sprise}}" required>
+					<div  class="input-group-btn">
+			<button type="button" class="btn btn-primary"  (click)="updateSprice(searchitem.value,sprise.value,itm.container_id);"> Update </button> 
+			</div>
+			</div>
+		</div>
 		</td>
 	</tr>
 	
 	</table>
+
+</div>

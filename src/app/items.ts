@@ -1,12 +1,13 @@
 export class Items{
        
-    public id: number;
-    public name: string;
-    public store: string;
+    public list_id: number;
+    public container_id: number;
+    public item_name: string;
+    public store_name: string;
     public qty: number;
-    public eprice: number;
+    public eprise: number;
     public inbucket: number;
-    public sprice: number;
+    public sprise: number;
   
   
 }

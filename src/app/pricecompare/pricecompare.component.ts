@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
+import {Router} from "@angular/router";
 import {Items} from '../items';
+import {ItemList} from '../itemlist';
 import {ItemrestService} from '../itemrest.service';
+
 
 @Component({
   selector: 'app-pricecompare',
@@ -11,23 +14,46 @@ import {ItemrestService} from '../itemrest.service';
 export class PricecompareComponent implements OnInit {
 
   itemlistprice : Items[];
+  itemlist : ItemList[];
   
-  constructor(private itemservice: ItemrestService) { }
+  constructor(private itemservice: ItemrestService, private router : Router) { }
 
   ngOnInit() {
-     this.getItems();
+
+    if(window.localStorage.getItem("session")!=="true")
+    {
+        this.router.navigate(["/auth"]);
+    }
+
+    this.getListTitle();
   }
 
-  getItems(): void{
-    this.itemservice.getItemsInBucket().subscribe(itemlist => {
-      this.itemlistprice = itemlist;
+  getListTitle()
+  {
+    this.itemservice.getItemList(Number(window.localStorage.getItem("user_id"))).subscribe(list =>{ 
+      this.itemlist = list;
     });
   }
   
-  updateSprice(id, sprice){
-    this.itemservice.updateItemPrice(id,sprice).subscribe(itemlist => {
-      this.itemlistprice = itemlist;
+
+  getItems(searchitem): void{
+    //console.log(searchitem);
+    if(searchitem>0)
+    {
+      this.itemservice.getItemsInBucket(searchitem).subscribe(item =>{ 
+        this.itemlistprice = item;
+      });
+    }
+  }
+
+  updateSprice(lid, spr, cid){
+    console.log(lid);
+    console.log(spr);
+    console.log(cid);
+    this.itemservice.updateSprise(lid, spr, cid).subscribe(item =>{ 
+      this.itemlistprice = item;
     });
+    
   }
   
 }

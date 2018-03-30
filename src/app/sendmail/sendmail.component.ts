@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder, FormControlName } from '@angular/forms';
 
+import {Router} from "@angular/router";
 import { ItemrestService } from '../itemrest.service';
 import { MailResponse } from '../mailresponse';
 
@@ -18,10 +19,16 @@ export class SendmailComponent implements OnInit {
   
   status = "";
   
-  constructor(private itemservice: ItemrestService) { }
+  constructor(private itemservice: ItemrestService, private router : Router) { }
 
   ngOnInit() {
     
+
+    if(window.localStorage.getItem("session")!=="true")
+    {
+        this.router.navigate(["/auth"]);
+    }
+
      this.createItemFormControls();
     this.createItemForm();
     

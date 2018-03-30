@@ -1,54 +1,18 @@
-<div style="background-color: green; line-height: 30px; color:white;" > Print Shoping List </div>
+<div class="container">
 
 
-<form [formGroup]="mailform" (ngSubmit)="sendMail()">
-	<table style="width: 300px; margin: auto">
-		<tr>
-			<td>
-				To
-			</td>
-			<td>
-				<input type="email" formControlName="email" class="form-control">
-				<span class="form-control-feedback" 
-       					  *ngIf="email.invalid && email.dirty || email.touched && email.errors"> 
-    					 Email id is invalid
-  					</span>
-  					<span class="form-control-feedback" 
-       				*ngIf="email.untouched"> 
-    				*
-  					</span>				
-			</td>
-		</tr>
-		<tr>
-			<td>
-				Subject
-			</td>
-			<td>
-				<input type="text" formControlName="sub" class="form-control">
-				<span class="form-control-feedback" 
-       					  *ngIf="sub.invalid && sub.dirty || sub.touched && sub.errors"> 
-    					 Subject is invalid
-  					</span>
-  					<span class="form-control-feedback" 
-       				*ngIf="sub.untouched"> 
-    				*
-  					</span>					
-			</td>
-		</tr>	
-		<tr>
-			<td>
-			</td>
-			<td>
-				<button type="submit">Send Mail</button>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2">
+
+<form #sendFrom="ngForm" [formGroup]="mailform" (ngSubmit)="sendMail()">
+	
+				<input placeholder="To" required type="email" formControlName="email" class="form-control">
+	
+				<input  required placeholder="Subject" type="text" formControlName="sub" class="form-control">
+	
+				<button [disabled]="!sendFrom.valid" class="btn btn-primary" type="submit">Send Mail</button>
+	
+	
 				{{status}}
-			</td>
-		</tr>
-	</table>
-	
-	
 	
 </form>
+
+</div>
